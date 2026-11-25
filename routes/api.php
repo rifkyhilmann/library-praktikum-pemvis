@@ -17,11 +17,10 @@ Route::get('/', function () {
 });
 
 Route::middleware(AuthMiddleware::class)->group(function () {
-   
+    Route::get('/auth/profile', [AuthController::class, 'profile']);
+    Route::post("/auth/logout", [AuthController::class, 'logout']);
 });
 
-Route::get('/auth/profile', [AuthController::class, 'profile']);
-Route::post("/auth/logout", [AuthController::class, 'logout']);
 
 Route::post('/books', [BookController::class, 'store']);
 Route::put('/books/{id}', [BookController::class, 'update']);
